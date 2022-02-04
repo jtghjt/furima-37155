@@ -4,9 +4,9 @@
 
 | Column             | Type   | Option                    |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false,              |
 | email              | string | null: false, unique: true |
-| encrypted_password | string | null: false, unique: true |
+| encrypted_password | string | null: false,              |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
@@ -31,26 +31,26 @@
 | prefecture_id    | integer    | null: false                    |
 | shipping_date_id | integer    | null: false                    |
 | price            | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ## Association
 
 - belongs_to :user
-- has_one :item
+- has_one :order
 
 
 ## orders テーブル
 
 | Column  | Type       | Option                         |
 | ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_key: true |
-| item_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ## Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :order
+- has_one :destination
 
 
 ## destinations テーブル
@@ -63,6 +63,6 @@
 | address        | string     | null: false                    |
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
-| order_id       | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
 - belongs_to :order
