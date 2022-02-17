@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
     const productPrice = priceInput.value;
     const salesCommission = document.getElementById("add-tax-price");
     const salesProfit = document.getElementById("profit");
-    salesCommission.innerHTML = productPrice * 0.1;
+    salesCommission.innerHTML = Math.floor (productPrice * 0.1);
     salesProfit.innerHTML = productPrice - salesCommission.innerHTML;
   })
 })
