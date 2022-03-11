@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe OrderDestination, type: :model do 
+RSpec.describe OrderDestination, type: :model do
   before do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_destination = FactoryBot.build(:order_destination, user_id: user.id, item_id: item.id)
     sleep 0.1
   end
-  
+
   describe '配送先情報の保存' do
     context '内容に問題がない場合' do
       it '全ての値が正しく入力されていれば保存できる' do
@@ -38,7 +38,7 @@ RSpec.describe OrderDestination, type: :model do
       it 'postcodeのハイフンがないと保存できない' do
         @order_destination.postcode = '1234567'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Postcode is Invalid. Include hyphen(-)" )
+        expect(@order_destination.errors.full_messages).to include('Postcode is Invalid. Include hyphen(-)')
       end
       it 'prefecture_idが -- だと保存できない' do
         @order_destination.prefecture_id = 1
@@ -68,12 +68,12 @@ RSpec.describe OrderDestination, type: :model do
       it 'phone_numberが10桁以上11桁以下でない場合は保存できない' do
         @order_destination.phone_number = '000000000000'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberにハイフンが入っていると保村できない' do
         @order_destination.phone_number = '123-4567-7890'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
       end
       it 'tokenが空だと登録できない' do
         @order_destination.token = nil
