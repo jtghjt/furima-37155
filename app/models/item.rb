@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   # 各モデルのアソシエーション
   belongs_to :user
+  has_one :order
 
   # ActiveStorageのアソシエーション
   has_one_attached :image
